@@ -10,16 +10,19 @@ const useLogin = () => {
     setIsLoading(true);
     setError(null);
 
-    const response = await fetch("http://127.0.0.1:5000/api/login", {
-      method: "POST",
-      body: JSON.stringify({
-        email,
-        password,
-      }),
-      headers: {
-        "Content-Type": "application/json",
-      },
-    });
+    const response = await fetch(
+      " https://workout-tracker-api-jbbj.onrender.com/api/login",
+      {
+        method: "POST",
+        body: JSON.stringify({
+          email,
+          password,
+        }),
+        headers: {
+          "Content-Type": "application/json",
+        },
+      }
+    );
     const data = await response.json();
 
     if (!response.ok) {

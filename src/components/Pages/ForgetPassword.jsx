@@ -4,8 +4,8 @@ import useForgetPassword from "../../Hooks/useForgetPassword";
 
 const ForgetPassword = () => {
   const { user, data } = useAuthContext();
-  console.log(`* ~ file: AboutMe.jsx:7 ~ AboutMe ~ data:`, data);
-  console.log(`* ~ file: AboutMe.jsx:5 ~ AboutMe ~ user:`, user);
+  // console.log(`* ~ file: AboutMe.jsx:7 ~ AboutMe ~ data:`, data);
+  // console.log(`* ~ file: AboutMe.jsx:5 ~ AboutMe ~ user:`, user);
   const { forgetPassword, error, isLoading } = useForgetPassword();
 
   const [email, setEmail] = useState("");

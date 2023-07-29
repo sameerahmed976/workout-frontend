@@ -4,8 +4,8 @@ import useResetPassword from "../../Hooks/useResetPassword";
 
 const AboutMe = () => {
   const { user, data } = useAuthContext();
-  console.log(`* ~ file: AboutMe.jsx:7 ~ AboutMe ~ data:`, data);
-  console.log(`* ~ file: AboutMe.jsx:5 ~ AboutMe ~ user:`, user);
+  // console.log(`* ~ file: AboutMe.jsx:7 ~ AboutMe ~ data:`, data);
+  // console.log(`* ~ file: AboutMe.jsx:5 ~ AboutMe ~ user:`, user);
   const { resetPassword, error, isLoading } = useResetPassword();
 
   const [password, setPassword] = useState("");

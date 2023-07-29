@@ -10,17 +10,20 @@ const useSignUp = () => {
     setIsLoading(true);
     setError(null);
 
-    const response = await fetch("http://127.0.0.1:5000/api/signup", {
-      method: "POST",
-      body: JSON.stringify({
-        email,
-        password,
-        username,
-      }),
-      headers: {
-        "Content-Type": "application/json",
-      },
-    });
+    const response = await fetch(
+      " https://workout-tracker-api-jbbj.onrender.com/api/signup",
+      {
+        method: "POST",
+        body: JSON.stringify({
+          email,
+          password,
+          username,
+        }),
+        headers: {
+          "Content-Type": "application/json",
+        },
+      }
+    );
     // console.log(`* ~ file: useSignUp.jsx:23 ~ signup ~ response`, response);
     const data = await response.json();
 

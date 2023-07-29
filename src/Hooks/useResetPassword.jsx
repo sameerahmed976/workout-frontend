@@ -15,7 +15,7 @@ const useResetPassword = () => {
     setError(null);
 
     const response = await fetch(
-      `http://127.0.0.1:5000/api/reset/${user.id}/${user.token}`,
+      ` https://workout-tracker-api-jbbj.onrender.com/api/reset/${user.id}/${user.token}`,
       {
         method: "POST",
         body: JSON.stringify({
