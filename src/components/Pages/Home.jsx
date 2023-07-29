@@ -18,12 +18,15 @@ const Home = () => {
       return;
     }
 
-    const response = await fetch("http://127.0.0.1:5000/api/workouts/" + id, {
-      method: "DELETE",
-      headers: {
-        Authorization: `Bearer ${user.token}`,
-      },
-    });
+    const response = await fetch(
+      " https://workout-tracker-api-jbbj.onrender.com/api/workouts/" + id,
+      {
+        method: "DELETE",
+        headers: {
+          Authorization: `Bearer ${user.token}`,
+        },
+      }
+    );
     // console.log(
     //   `* ~ file: WorkForm.jsx:21 ~ handleSubmit ~ response`,
     //   response
@@ -39,12 +42,15 @@ const Home = () => {
   const fetchData = async () => {
     setIsLoading(true);
     try {
-      const response = await fetch("http://127.0.0.1:5000/api/workouts", {
-        headers: {
-          "Content-Type": "application/json",
-          Authorization: `Bearer ${user.token}`,
-        },
-      });
+      const response = await fetch(
+        " https://workout-tracker-api-jbbj.onrender.com/api/workouts",
+        {
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${user.token}`,
+          },
+        }
+      );
       // console.log(`* ~ file: Home.jsx:9 ~ fetchData ~ response`, response);
 
       const data = await response.json();
