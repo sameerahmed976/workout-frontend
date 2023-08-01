@@ -10,12 +10,17 @@ const useResetPassword = () => {
   //     user
   //   );
 
-  const resetPassword = async (password, confirmPassword) => {
+  const resetPassword = async (
+    password,
+    confirmPassword,
+    id = user.id,
+    token = user.token
+  ) => {
     setIsLoading(true);
     setError(null);
 
     const response = await fetch(
-      ` https://workout-tracker-api-jbbj.onrender.com/api/reset/${user.id}/${user.token}`,
+      ` https://workout-tracker-api-jbbj.onrender.com/api/reset/${id}/${token}`,
       {
         method: "POST",
         body: JSON.stringify({

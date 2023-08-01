@@ -1,5 +1,5 @@
 import useAuthContext from "../../Hooks/AuthContext";
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import useResetPassword from "../../Hooks/useResetPassword";
 import { Link, Navigate, useParams } from "react-router-dom";
 
@@ -13,21 +13,21 @@ const NewPassword = () => {
   //   console.log(`* ~ file: NewPassword.jsx:13 ~ NewPassword ~ id:`, id);
   //   console.log(`* ~ file: NewPassword.jsx:13 ~ NewPassword ~ token:`, token);
 
-  useEffect(() => {
-    dispatch({
-      type: "NEW_PASSWORD",
-      payload: {
-        token,
-        id,
-      },
-    });
-  }, []);
+  // useEffect(() => {
+  //   dispatch({
+  //     type: "NEW_PASSWORD",
+  //     payload: {
+  //       token,
+  //       id,
+  //     },
+  //   });
+  // }, []);
 
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
   const handleSubmit = async (e) => {
     e.preventDefault();
-    await resetPassword(password, confirmPassword);
+    await resetPassword(password, confirmPassword, id, token);
     setConfirmPassword("");
     setPassword("");
   };
