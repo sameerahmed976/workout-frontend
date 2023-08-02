@@ -20,6 +20,7 @@ const Home = () => {
 
     const response = await fetch(
       " https://workout-tracker-api-jbbj.onrender.com/api/workouts/" + id,
+      // " https://workout-tracker-api-jbbj.onrender.com/api/workouts/" + id,
       {
         method: "DELETE",
         headers: {
@@ -43,6 +44,7 @@ const Home = () => {
     setIsLoading(true);
     try {
       const response = await fetch(
+        // " https://workout-tracker-api-jbbj.onrender.com/api/workouts",
         " https://workout-tracker-api-jbbj.onrender.com/api/workouts",
         {
           headers: {

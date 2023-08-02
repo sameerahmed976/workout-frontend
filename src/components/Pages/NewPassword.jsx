@@ -1,13 +1,20 @@
 import useAuthContext from "../../Hooks/AuthContext";
 import React, { useState } from "react";
-import useResetPassword from "../../Hooks/useResetPassword";
+// import useResetPassword from "../../Hooks/useResetPassword";
 import { Link, Navigate, useParams } from "react-router-dom";
 
 const NewPassword = () => {
-  const { dispatch, data } = useAuthContext();
+  const [data, setData] = useState(" ");
+  const [error, setError] = useState(" ");
+  const [isLoading, setIsLoading] = useState(false);
+
+  const [password, setPassword] = useState(" ");
+  const [confirmPassword, setConfirmPassword] = useState(" ");
+  const { dispatch } = useAuthContext();
+
   //   console.log(`* ~ file: AboutMe.jsx:7 ~ AboutMe ~ data:`, data);
   //   console.log(`* ~ file: AboutMe.jsx:5 ~ AboutMe ~ user:`, user);
-  const { resetPassword, error, isLoading } = useResetPassword();
+  // const { resetPassword, error, isLoading } = useResetPassword();
 
   const { token, id } = useParams();
   //   console.log(`* ~ file: NewPassword.jsx:13 ~ NewPassword ~ id:`, id);
@@ -23,11 +30,64 @@ const NewPassword = () => {
   //   });
   // }, []);
 
-  const [password, setPassword] = useState("");
-  const [confirmPassword, setConfirmPassword] = useState("");
+  if (isLoading) {
+    return (
+      <main>
+        <h2>Loading...</h2>
+      </main>
+    );
+  }
+
+  const newP = async (password, confirmPassword, id, token) => {
+    setIsLoading(true);
+    setError(null);
+
+    const response = await fetch(
+      ` https://workout-tracker-api-jbbj.onrender.com/api/reset/${id}/${token}`,
+      // ` https://workout-tracker-api-jbbj.onrender.com/api/reset/${id}/${token}`,
+      {
+        method: "POST",
+        body: JSON.stringify({
+          password,
+          confirmPassword,
+        }),
+        headers: {
+          "Content-Type": "application/json",
+        },
+      }
+    );
+    // console.log(`* ~ file: NewPassword.jsx:51 ~ newP ~ response:`, response);
+    const data = await response.json();
+    // console.log(`* ~ file: NewPassword.jsx:47 ~ newP ~ data:`, data.message);
+
+    if (!response.ok) {
+      // console.log(
+      //   `* ~ file: NewPassword.jsx:56 ~ newP ~ response.ok:`,
+      //   response.ok
+      // );
+
+      setIsLoading(false);
+      setError("Invalid data or Please try again");
+    }
+    if (response.ok) {
+      setIsLoading(false);
+      setError(null);
+      setData(data);
+
+      //   localStorage.setItem("user", JSON.stringify(data));
+      dispatch({
+        type: "LOGOUT",
+      });
+    }
+  };
+
   const handleSubmit = async (e) => {
     e.preventDefault();
-    await resetPassword(password, confirmPassword, id, token);
+    // await resetPassword(password, confirmPassword, id, token);
+    // console.log(password, confirmPassword);
+
+    newP(password, confirmPassword, id, token);
+
     setConfirmPassword("");
     setPassword("");
   };
@@ -69,24 +129,16 @@ const NewPassword = () => {
               <button
                 className="btn btn--login"
                 type="submit"
-                disabled={isLoading}
+                // disabled={isLoading}
               >
                 Submit
               </button>
             </form>
           </section>
-          <p className="error">{error && error.message}</p>
+          <p className="error">{error && error}</p>
           <p className="error">{data?.success && data.data.message}</p>
-          <Link
-            to="/"
-            className="btn"
-            onClick={dispatch({
-              type: "LOGOUT",
-            })}
-          >
-            Go back to Login
-          </Link>
         </section>
+        <Link to="/">Back to Login</Link>
       </section>
     </main>
   );

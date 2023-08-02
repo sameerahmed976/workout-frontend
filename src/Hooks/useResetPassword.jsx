@@ -21,6 +21,7 @@ const useResetPassword = () => {
 
     const response = await fetch(
       ` https://workout-tracker-api-jbbj.onrender.com/api/reset/${id}/${token}`,
+      // ` https://workout-tracker-api-jbbj.onrender.com/api/reset/${id}/${token}`,
       {
         method: "POST",
         body: JSON.stringify({

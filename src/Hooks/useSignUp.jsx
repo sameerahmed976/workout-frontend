@@ -11,7 +11,8 @@ const useSignUp = () => {
     setError(null);
 
     const response = await fetch(
-      " https://workout-tracker-api-jbbj.onrender.com/api/signup",
+      // " https://workout-tracker-api-jbbj.onrender.com/api/signup",
+      "https://workout-tracker-api-jbbj.onrender.com/api/signup",
       {
         method: "POST",
         body: JSON.stringify({
