@@ -9,7 +9,7 @@ import useAuthContext from "./Hooks/AuthContext";
 import AboutMe from "./components/Pages/AboutMe";
 import ForgetPassword from "./components/Pages/ForgetPassword";
 import NewPassword from "./components/Pages/NewPassword";
-
+import DefaultPage from "./components/Pages/DefaultPage";
 const App = () => {
   const { user } = useAuthContext();
 
@@ -18,7 +18,7 @@ const App = () => {
       <BrowserRouter>
         <Routes>
           <Route path="/" element={<Layout />}>
-            <Route index element={user ? <Home /> : <Navigate to="/login" />} />
+            <Route index element={<DefaultPage />} />
             <Route
               path="/aboutMe"
               element={user ? <AboutMe /> : <Navigate to="/" />}
@@ -31,6 +31,10 @@ const App = () => {
             <Route
               path="/login"
               element={!user ? <Login /> : <Navigate to="/" />}
+            />
+            <Route
+              path="/home"
+              element={!user ? <Home /> : <Navigate to="/" />}
             />
             <Route path="/forgetPassword" element={<ForgetPassword />} />
             <Route path="*" element={<Error />} />

@@ -13,6 +13,9 @@ const Home = () => {
   // console.log(`* ~ file: Home.jsx:9 ~ Home ~ user`, user);
   const { workouts, dispatch } = useWorkouts();
 
+
+  
+
   const handleDelete = async (id) => {
     if (!user) {
       return;
