@@ -15,7 +15,11 @@ const SignUp = () => {
   };
 
   if (isLoading) {
-    return <h1 className="isLoading">Loading...</h1>;
+    return (
+      <main>
+        <h2 className="main__loading">Loading...</h2>
+      </main>
+    );
   }
 
   return (

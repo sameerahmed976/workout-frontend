@@ -34,7 +34,7 @@ const App = () => {
             />
             <Route
               path="/home"
-              element={!user ? <Home /> : <Navigate to="/" />}
+              element={user ? <Home /> : <Navigate to="/" />}
             />
             <Route path="/forgetPassword" element={<ForgetPassword />} />
             <Route path="*" element={<Error />} />

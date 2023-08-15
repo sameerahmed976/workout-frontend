@@ -30,6 +30,7 @@ const useLogin = () => {
       setIsLoading(false);
       setError(data);
     }
+
     if (response.ok) {
       setIsLoading(false);
       setError(null);

@@ -12,6 +12,14 @@ const Login = () => {
     setPassword("");
   };
 
+  if (isLoading) {
+    return (
+      <main>
+        <h2 className="main__loading">Loading...</h2>
+      </main>
+    );
+  }
+
   return (
     <>
       <main className="main__login">
