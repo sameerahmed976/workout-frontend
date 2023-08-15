@@ -21,7 +21,7 @@ const App = () => {
             <Route index element={<DefaultPage />} />
             <Route
               path="/aboutMe"
-              element={user ? <AboutMe /> : <Navigate to="/" />}
+              element={user ? <AboutMe /> : <Navigate to="/home" />}
             />
             <Route path="/reset/:token/:id" element={<NewPassword />} />
             <Route
