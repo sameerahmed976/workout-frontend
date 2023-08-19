@@ -10,6 +10,10 @@ import AboutMe from "./components/Pages/AboutMe";
 import ForgetPassword from "./components/Pages/ForgetPassword";
 import NewPassword from "./components/Pages/NewPassword";
 import DefaultPage from "./components/Pages/DefaultPage";
+
+import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+
 const App = () => {
   const { user } = useAuthContext();
 
@@ -18,7 +22,7 @@ const App = () => {
       <BrowserRouter>
         <Routes>
           <Route path="/" element={<Layout />}>
-            <Route index element={<DefaultPage />} />
+            <Route index element={user ? <Home /> : <DefaultPage />} />
             <Route
               path="/aboutMe"
               element={user ? <AboutMe /> : <Navigate to="/home" />}
@@ -41,6 +45,19 @@ const App = () => {
           </Route>
         </Routes>
       </BrowserRouter>
+
+      <ToastContainer
+        position="top-center"
+        autoClose={5000}
+        hideProgressBar={false}
+        newestOnTop={false}
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+        theme="colored"
+      />
     </>
   );
 };

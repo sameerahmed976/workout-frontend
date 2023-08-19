@@ -1,6 +1,7 @@
 import useAuthContext from "../../Hooks/AuthContext";
 import React, { useState } from "react";
 import useResetPassword from "../../Hooks/useResetPassword";
+import { toast } from "react-toastify";
 
 const AboutMe = () => {
   const { user, data } = useAuthContext();
@@ -13,8 +14,11 @@ const AboutMe = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     await resetPassword(password, confirmPassword);
-    setConfirmPassword("");
-    setPassword("");
+
+    if (!error) {
+      setConfirmPassword("");
+      setPassword("");
+    }
   };
 
   return (

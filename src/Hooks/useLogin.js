@@ -1,18 +1,20 @@
 import React, { useState } from "react";
 import useAuthContext from "./AuthContext";
+import { toast } from "react-toastify";
+import { useNavigate } from "react-router-dom";
 
-const useLogin = () => {
+export const useLogin = () => {
   const [error, setError] = useState(null);
   const [isLoading, setIsLoading] = useState(null);
   const { dispatch } = useAuthContext();
-
+  const navigate = useNavigate();
   const login = async (email, password) => {
     setIsLoading(true);
     setError(null);
 
     const response = await fetch(
       // " http://localhost:5000/api/login",
-      "https://workout-tracker-api-jbbj.onrender.com/api/login",
+      "http://localhost:5000/api/login",
       {
         method: "POST",
         body: JSON.stringify({
@@ -26,11 +28,6 @@ const useLogin = () => {
     );
     const data = await response.json();
 
-    if (!response.ok) {
-      setIsLoading(false);
-      setError(data);
-    }
-
     if (response.ok) {
       setIsLoading(false);
       setError(null);
@@ -39,10 +36,36 @@ const useLogin = () => {
         type: "LOGIN",
         payload: data,
       });
+
+      toast.success("login  is successfully", {
+        position: "top-center",
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "colored",
+      });
+      navigate("/home");
+    }
+
+    if (!response.ok) {
+      // console.log("first");
+      setError(true);
+      setIsLoading(false);
+      toast.error(`${data.message}`, {
+        position: "top-center",
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "colored",
+      });
     }
   };
 
   return { login, error, isLoading };
 };
-
-export default useLogin;

@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import useAuthContext from "../Hooks/AuthContext";
 import useWorkouts from "../Hooks/useWorkouts";
+import { toast } from "react-toastify";
 
 const WorkForm = () => {
   const [title, setTitle] = useState("");
@@ -19,17 +20,14 @@ const WorkForm = () => {
 
     const workout = { title, load, reps };
 
-    const response = await fetch(
-      " https://workout-tracker-api-jbbj.onrender.com/api/workouts",
-      {
-        method: "POST",
-        body: JSON.stringify(workout),
-        headers: {
-          "Content-Type": "application/json",
-          authorization: `Bearer ${user.token} `,
-        },
-      }
-    );
+    const response = await fetch(" http://localhost:5000/api/workouts", {
+      method: "POST",
+      body: JSON.stringify(workout),
+      headers: {
+        "Content-Type": "application/json",
+        authorization: `Bearer ${user.token} `,
+      },
+    });
     // console.log(
     //   `* ~ file: WorkForm.jsx:21 ~ handleSubmit ~ response`,
     //   response
@@ -43,12 +41,34 @@ const WorkForm = () => {
       setLoad("");
       setReps("");
       setTitle("");
+      toast.error("something went wrong", {
+        position: "top-center",
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "colored",
+      });
     }
     if (response.ok) {
       dispatch({
         type: "CREATE_WORKOUTS",
         payload: data,
       });
+
+      toast.success("workout  is created successfully", {
+        position: "top-center",
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "colored",
+      });
+
       setError(null);
       setLoad("");
       setReps("");

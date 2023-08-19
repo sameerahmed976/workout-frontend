@@ -3,6 +3,7 @@ import useAuthContext from "../../Hooks/AuthContext";
 import useWorkouts from "../../Hooks/useWorkouts";
 import WorkForm from "../WorkForm";
 import WorkoutList from "../WorkoutList";
+import { toast } from "react-toastify";
 
 const Home = () => {
   // const [workouts, setWorkouts] = useState(null);
@@ -13,17 +14,14 @@ const Home = () => {
   // console.log(`* ~ file: Home.jsx:9 ~ Home ~ user`, user);
   const { workouts, dispatch } = useWorkouts();
 
-
-  
-
   const handleDelete = async (id) => {
     if (!user) {
       return;
     }
 
     const response = await fetch(
-      " https://workout-tracker-api-jbbj.onrender.com/api/workouts/" + id,
-      // " https://workout-tracker-api-jbbj.onrender.com/api/workouts/" + id,
+      " http://localhost:5000/api/workouts/" + id,
+      // " http://localhost:5000/api/workouts/" + id,
       {
         method: "DELETE",
         headers: {
@@ -41,14 +39,25 @@ const Home = () => {
       payload: data,
     });
     // console.log(data);
+
+    toast.info("workout  deleted successfully", {
+      position: "top-center",
+      autoClose: 5000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+      theme: "colored",
+    });
   };
 
   const fetchData = async () => {
     setIsLoading(true);
     try {
       const response = await fetch(
-        // " https://workout-tracker-api-jbbj.onrender.com/api/workouts",
-        " https://workout-tracker-api-jbbj.onrender.com/api/workouts",
+        // " http://localhost:5000/api/workouts",
+        " http://localhost:5000/api/workouts",
         {
           headers: {
             "Content-Type": "application/json",

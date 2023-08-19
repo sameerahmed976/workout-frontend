@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import useAuthContext from "../../Hooks/AuthContext";
-import useForgetPassword from "../../Hooks/useForgetPassword";
+import { useForgetPassword } from "../../Hooks/useForgetPassword";
 
 const ForgetPassword = () => {
   const { user, data } = useAuthContext();

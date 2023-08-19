@@ -1,7 +1,8 @@
 import React, { useState } from "react";
 import useAuthContext from "./AuthContext";
+import { toast } from "react-toastify";
 
-const useForgetPassword = () => {
+export const useForgetPassword = () => {
   const [error, setError] = useState(null);
   const [isLoading, setIsLoading] = useState(null);
   const { dispatch } = useAuthContext();
@@ -15,8 +16,8 @@ const useForgetPassword = () => {
     setError(null);
 
     const response = await fetch(
-      // ` https://workout-tracker-api-jbbj.onrender.com/api/reset/forgetPassword`,
-      ` https://workout-tracker-api-jbbj.onrender.com/api/reset/forgetPassword`,
+      // ` http://localhost:5000/api/reset/forgetPassword`,
+      ` http://localhost:5000/api/reset/forgetPassword`,
       {
         method: "POST",
         body: JSON.stringify({
@@ -29,10 +30,6 @@ const useForgetPassword = () => {
     );
     const data = await response.json();
 
-    if (!response.ok) {
-      setIsLoading(false);
-      setError(data);
-    }
     if (response.ok) {
       setIsLoading(false);
       setError(null);
@@ -41,10 +38,35 @@ const useForgetPassword = () => {
         type: "RESET_PASSWORD",
         payload: data,
       });
+
+      toast.success("email sent successfully", {
+        position: "top-center",
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "colored",
+      });
+    }
+
+    if (!response.ok) {
+      // console.log("first");
+      setError(true);
+      setIsLoading(false);
+      toast.error(`${data.message}`, {
+        position: "top-center",
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "colored",
+      });
     }
   };
 
   return { forgetPassword, error, isLoading };
 };
-
-export default useForgetPassword;

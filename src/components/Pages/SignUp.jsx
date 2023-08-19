@@ -1,23 +1,22 @@
 import React, { useState } from "react";
 import useSignUp from "../../Hooks/useSignUp";
-import { useNavigate } from "react-router-dom";
 
 const SignUp = () => {
   const { error, signup, isLoading } = useSignUp();
+  // console.log(`* ~ file: SignUp.jsx:8 ~ SignUp ~ error:`, error);
   const [username, setUsername] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
-  const navigate = useNavigate();
-
   const handleSubmit = async (e) => {
     e.preventDefault();
     await signup(email, password, username);
-    setUsername("");
-    setEmail("");
-    setPassword("");
 
-    navigate("/home");
+    if (!error) {
+      setUsername("");
+      setEmail("");
+      setPassword("");
+    }
   };
 
   if (isLoading) {
