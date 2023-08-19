@@ -20,14 +20,17 @@ const WorkForm = () => {
 
     const workout = { title, load, reps };
 
-    const response = await fetch(" http://localhost:5000/api/workouts", {
-      method: "POST",
-      body: JSON.stringify(workout),
-      headers: {
-        "Content-Type": "application/json",
-        authorization: `Bearer ${user.token} `,
-      },
-    });
+    const response = await fetch(
+      " https://workout-tracker-api-jbbj.onrender.com/api/workouts",
+      {
+        method: "POST",
+        body: JSON.stringify(workout),
+        headers: {
+          "Content-Type": "application/json",
+          authorization: `Bearer ${user.token} `,
+        },
+      }
+    );
     // console.log(
     //   `* ~ file: WorkForm.jsx:21 ~ handleSubmit ~ response`,
     //   response

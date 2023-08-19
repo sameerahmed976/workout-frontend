@@ -43,8 +43,8 @@ const NewPassword = () => {
     setError(null);
 
     const response = await fetch(
-      ` http://localhost:5000/api/reset/${id}/${token}`,
-      // ` http://localhost:5000/api/reset/${id}/${token}`,
+      ` https://workout-tracker-api-jbbj.onrender.com/api/reset/${id}/${token}`,
+      // ` https://workout-tracker-api-jbbj.onrender.com/api/reset/${id}/${token}`,
       {
         method: "POST",
         body: JSON.stringify({

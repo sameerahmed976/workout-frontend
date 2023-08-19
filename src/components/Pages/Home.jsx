@@ -20,8 +20,8 @@ const Home = () => {
     }
 
     const response = await fetch(
-      " http://localhost:5000/api/workouts/" + id,
-      // " http://localhost:5000/api/workouts/" + id,
+      " https://workout-tracker-api-jbbj.onrender.com/api/workouts/" + id,
+      // " https://workout-tracker-api-jbbj.onrender.com/api/workouts/" + id,
       {
         method: "DELETE",
         headers: {
@@ -56,8 +56,8 @@ const Home = () => {
     setIsLoading(true);
     try {
       const response = await fetch(
-        // " http://localhost:5000/api/workouts",
-        " http://localhost:5000/api/workouts",
+        // " https://workout-tracker-api-jbbj.onrender.com/api/workouts",
+        " https://workout-tracker-api-jbbj.onrender.com/api/workouts",
         {
           headers: {
             "Content-Type": "application/json",

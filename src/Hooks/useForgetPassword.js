@@ -16,8 +16,8 @@ export const useForgetPassword = () => {
     setError(null);
 
     const response = await fetch(
-      // ` http://localhost:5000/api/reset/forgetPassword`,
-      ` http://localhost:5000/api/reset/forgetPassword`,
+      // ` https://workout-tracker-api-jbbj.onrender.com/api/reset/forgetPassword`,
+      ` https://workout-tracker-api-jbbj.onrender.com/api/reset/forgetPassword`,
       {
         method: "POST",
         body: JSON.stringify({
