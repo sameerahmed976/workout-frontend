@@ -2,6 +2,7 @@ import React from "react";
 import { Link, NavLink, Outlet } from "react-router-dom";
 import useAuthContext from "../../Hooks/AuthContext";
 import useLogout from "../../Hooks/useLogout";
+import { toast } from "react-toastify";
 
 const Layout = () => {
   const { user } = useAuthContext();
@@ -9,6 +10,16 @@ const Layout = () => {
 
   const handleLogout = () => {
     logout();
+    toast.success("logout  is successfully", {
+      position: "top-center",
+      autoClose: 5000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+      theme: "colored",
+    });
   };
 
   return (
