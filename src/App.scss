@@ -122,6 +122,22 @@ p {
   transform: translateY(5px);
 }
 
+.defaultImage {
+  position: relative;
+}
+
+.backgroundImage {
+  position: absolute;
+  height: 100vh;
+  object-fit: cover;
+  z-index: -1;
+}
+
+.bgImage {
+  width: 100%;
+  max-width: 100%;
+}
+
 .main__loading {
   position: fixed;
   top: 0;
@@ -348,7 +364,7 @@ p {
 .main__login,
 .main__signup {
   background-color: rgba(128, 128, 128, 0.137);
-  min-height: 80vh;
+  min-height: 100vh;
 
   display: grid;
   grid-template-columns: auto;
@@ -437,8 +453,9 @@ p {
 }
 
 .default__title {
-  text-align: center;
+  text-align: left;
   padding: 3rem 0;
+  padding-left: 4rem;
   color: var(--primary-color);
   font-size: var(--font-size-h3);
   text-shadow: 2px 2px 1px var(--btn-color);
@@ -446,14 +463,17 @@ p {
 
 .btn__group {
   display: flex;
-  justify-content: center;
+  justify-content: start;
+  flex-direction: column;
   flex-wrap: wrap;
-gap: 2rem;
+  gap: 2rem;
+  padding-left: 4rem;
   .btn {
     text-align: center;
     width: 180px;
     transition: var(--transition-8);
     margin: 0;
+    background-color: var(--heading-color);
     &:hover {
       color: white;
     }
